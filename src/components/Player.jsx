@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function player({ inatialName, symbol, isActive }) {
+export default function player({ inatialName, symbol, isActive, onChangName }) {
   const [isEditing, setISEditing] = useState(false);
   const [playerName, setplayerName] = useState(inatialName);
 
@@ -9,6 +9,9 @@ export default function player({ inatialName, symbol, isActive }) {
   }
   function handilchange(event) {
     setplayerName(event.target.value);
+    if (isEditing) {
+      onChangName(symbol, playerName);
+    }
   }
 
   let edibalePlayerName = <span className="player-name">{playerName}</span>;
